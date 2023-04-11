@@ -8,17 +8,17 @@ app.use(cors());
 app.use(express.json());
 
 app.post('/cliente/gravar', multer().none(), (req, res) => {
-  const {nome, telefone, email, logradouro, numero, complemento, bairro, cidade, uf, cep, tipo} = req.body;
+  const {nome, telefone, email, logradouro, numero, complemento, bairro, cidade, uf, cep, descricao} = req.body;
 
   const insertionInCustomerTypes = 'INSERT INTO tipo_cliente (tipo) VALUES (?);';
 
-  connection.query(insertionInCustomerTypes, [tipo], (err, result) => {
+  connection.query(insertionInCustomerTypes, [descricao], (err, result) => {
     if (err) {
       res.sendStatus(400);
       throw err;
     }
 
-    const insertionInCustomers = 'INSERT INTO clientes (nome, telefone, email, logradouro, numero, complemento, bairro, cidade, uf, cep, idtipo_cliente) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);';
+    const insertionInCustomers = 'INSERT INTO clientes (nome, telefone, email, logradouro, numero, complemento, bairro, cidade, uf, cep, descricao) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);';
 
     const customerVariables = [nome, telefone, email, logradouro, numero, complemento, bairro, cidade, uf, cep, result.insertId];
 
