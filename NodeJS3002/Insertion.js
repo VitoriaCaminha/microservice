@@ -18,7 +18,7 @@ app.post('/cliente/gravar', multer().none(), (req, res) => {
       throw err;
     }
 
-    const insertionInCustomers = 'INSERT INTO clientes (nome, telefone, email, logradouro, numero, complemento, bairro, cidade, uf, cep, descricao) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);';
+    const insertionInCustomers = 'INSERT INTO clientes (nome, telefone, email, logradouro, numero, complemento, bairro, cidade, uf, cep, idtipo_cliente) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);';
 
     const customerVariables = [nome, telefone, email, logradouro, numero, complemento, bairro, cidade, uf, cep, result.insertId];
 
