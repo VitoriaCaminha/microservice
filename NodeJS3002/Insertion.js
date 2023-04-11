@@ -10,7 +10,7 @@ app.use(express.json());
 app.post('/cliente/gravar', multer().none(), (req, res) => {
   const {nome, telefone, email, logradouro, numero, complemento, bairro, cidade, uf, cep, descricao} = req.body;
 
-  const insertionInCustomerTypes = 'INSERT INTO tipo_cliente (tipo) VALUES (?);';
+  const insertionInCustomerTypes = 'INSERT INTO tipo_cliente (descricao) VALUES (?);';
 
   connection.query(insertionInCustomerTypes, [descricao], (err, result) => {
     if (err) {
